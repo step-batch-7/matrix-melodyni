@@ -22,7 +22,7 @@ public class Matrix {
     }
   }
 
-  public Matrix add(Matrix matrix) throws Exception{
+  public Matrix add(Matrix matrix) {
     if (matrix.row != this.row || matrix.col != this.col){
       return null;
     }
@@ -35,7 +35,7 @@ public class Matrix {
     return result;
   }
 
-  public Matrix subtract(Matrix matrix) throws Exception{
+  public Matrix subtract(Matrix matrix) {
     if (matrix.row != this.row || matrix.col != this.col){
       return null;
     }
@@ -49,7 +49,7 @@ public class Matrix {
   }
 
 
-  public Matrix multiply(Matrix matrix) throws Exception{
+  public Matrix multiply(Matrix matrix) {
     if(this.col != matrix.row){
       return null;
     }

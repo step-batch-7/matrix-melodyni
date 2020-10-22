@@ -56,4 +56,24 @@ public class MatrixTest {
     assertFalse(matrix1.equals(elements2));
   }
 
+  @Test
+  public void addsTwoMatrices() {
+    int[][] elements1 = {{1,2},{3,4}};
+    Matrix matrix1 = new Matrix(2,2,elements1);
+    int[][] elements2 = {{2,1},{4,3}};
+    Matrix matrix2 = new Matrix(2,2,elements2);
+    int[][] elements3 = {{3,3},{7,7}};
+    Matrix resultantMatrix = new Matrix(2,2,elements3);
+    assertEquals(resultantMatrix,matrix1.add(matrix2));
+  }
+
+  @Test
+  public void doesNotAddMatricesOfDifferentDimensions() {
+    int[][] elements1 = {{1,2},{3,4}};
+    Matrix matrix1 = new Matrix(2,2,elements1);
+    int[][] elements2 = {{2,1},{4,3},{5,6}};
+    Matrix matrix2 = new Matrix(3,2,elements2);
+    assertNull(matrix1.add(matrix2));
+  }
+
 }
