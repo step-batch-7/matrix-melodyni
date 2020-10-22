@@ -5,6 +5,7 @@ import org.junit.Test;
 
 
 public class MatrixTest {
+  @Test
   public void representsMatrixInString() {
     int[][] elements = {{1,2},{3,4}};
     Matrix matrix = new Matrix(2,2,elements);
@@ -12,4 +13,47 @@ public class MatrixTest {
     String expected = "Matrix {\n  1 2 \n  3 4 \n}";
     assertEquals(actual, expected);
   }
+
+  @Test
+  public void equatesTwoMatricesThatAreEqual() {
+    int[][] elements1 = {{1,2},{3,4}};
+    Matrix matrix1 = new Matrix(2,2,elements1);
+    int[][] elements2 = {{1,2},{3,4}};
+    Matrix matrix2 = new Matrix(2,2,elements2);
+    assertTrue(matrix1.equals(matrix2));
+  }
+
+  @Test
+  public void equatesTwoMatricesThatAreSameInstance() {
+    int[][] elements1 = {{1,2},{3,4}};
+    Matrix matrix1 = new Matrix(2,2,elements1);
+    assertTrue(matrix1.equals(matrix1));
+  }
+
+  @Test
+  public void equatesTwoMatricesThatAreNotEqual() {
+    int[][] elements1 = {{1,2},{3,4}};
+    Matrix matrix1 = new Matrix(2,2,elements1);
+    int[][] elements2 = {{3,2},{3,4}};
+    Matrix matrix2 = new Matrix(2,2,elements2);
+    assertFalse( matrix1.equals(matrix2));
+  }
+
+  @Test
+  public void equatesTwoMatricesThatAreNotEqualInDimensions() {
+    int[][] elements1 = {{1,2},{3,4}};
+    Matrix matrix1 = new Matrix(2,2,elements1);
+    int[][] elements2 = {{3,2},{3,4},{4,5}};
+    Matrix matrix2 = new Matrix(3,2,elements2);
+    assertFalse(matrix1.equals(matrix2));
+  }
+
+  @Test
+  public void equatesMatricesWithOther() {
+    int[][] elements1 = {{1,2},{3,4}};
+    Matrix matrix1 = new Matrix(2,2,elements1);
+    int[][] elements2 = {{3,2},{3,4},{4,5}};
+    assertFalse(matrix1.equals(elements2));
+  }
+
 }
