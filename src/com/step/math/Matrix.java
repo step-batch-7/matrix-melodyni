@@ -42,7 +42,7 @@ public class Matrix {
     Matrix result = new Matrix(this.row,this.col);
     for (int i = 0; i < this.row; i++){
       for (int j = 0; j < this.col; j++){
-        result.data[i][j] = matrix.data[i][j] - this.data[i][j];
+        result.data[i][j] = this.data[i][j] - matrix.data[i][j];
       }
     }
     return result;
