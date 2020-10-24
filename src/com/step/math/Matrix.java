@@ -69,20 +69,6 @@ public class Matrix {
   }
 
   @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("Matrix {");
-    for (int[] row : this.data) {
-      sb.append("\n  ");
-      for (int element : row) {
-        sb.append(element).append(" ");
-      }
-    }
-    sb.append("\n}");
-    return sb.toString();
-  }
-
-  @Override
   public boolean equals(Object other) {
     if (this == other) {
       return true;
@@ -95,5 +81,19 @@ public class Matrix {
       return false;
     }
     return this.isDeepEqual(matrix2);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("Matrix {");
+    for (int[] row : this.data) {
+      sb.append("\n  ");
+      for (int element : row) {
+        sb.append(element).append(" ");
+      }
+    }
+    sb.append("\n}");
+    return sb.toString();
   }
 }
