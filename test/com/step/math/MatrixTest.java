@@ -7,124 +7,99 @@ import org.junit.Test;
 public class MatrixTest {
 
   @Test
-  public void representsMatrixInString() {
-    int[][] elements = { { 1, 2 }, { 3, 4 } };
-    Matrix matrix = new Matrix(2, 2, elements);
-    String actual = matrix.toString();
-    String expected = "Matrix {\n  1 2 \n  3 4 \n}";
-    assertEquals(actual, expected);
+  public void shouldRepresentMatrixInString() {
+    Matrix matrix = matrix_2x2(1, 2, 3, 4);
+    assertEquals("Matrix {\n  1 2 \n  3 4 \n}", matrix.toString());
   }
 
   @Test
-  public void equatesTwoMatricesThatAreEqual() {
-    int[][] elements1 = { { 1, 2 }, { 3, 4 } };
-    Matrix matrix1 = new Matrix(2, 2, elements1);
-    int[][] elements2 = { { 1, 2 }, { 3, 4 } };
-    Matrix matrix2 = new Matrix(2, 2, elements2);
+  public void shouldEquateTwoMatricesThatAreEqual() {
+    Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
+    Matrix matrix2 = matrix_2x2(1, 2, 3, 4);
     assertTrue(matrix1.equals(matrix2));
   }
 
   @Test
-  public void equatesTwoMatricesThatAreSameInstance() {
-    int[][] elements1 = { { 1, 2 }, { 3, 4 } };
-    Matrix matrix1 = new Matrix(2, 2, elements1);
-    assertTrue(matrix1.equals(matrix1));
-  }
-
-  @Test
-  public void equatesTwoMatricesThatAreNotEqual() {
-    int[][] elements1 = { { 1, 2 }, { 3, 4 } };
-    Matrix matrix1 = new Matrix(2, 2, elements1);
-    int[][] elements2 = { { 3, 2 }, { 3, 4 } };
-    Matrix matrix2 = new Matrix(2, 2, elements2);
+  public void shouldEquateTwoMatricesThatAreNotEqual() {
+    Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
+    Matrix matrix2 = matrix_2x2(3, 2, 3, 4);
     assertFalse(matrix1.equals(matrix2));
   }
 
   @Test
-  public void equatesTwoMatricesThatAreNotEqualInDimensions() {
-    int[][] elements1 = { { 1, 2 }, { 3, 4 } };
-    Matrix matrix1 = new Matrix(2, 2, elements1);
-    int[][] elements2 = { { 3, 2 }, { 3, 4 }, { 4, 5 } };
-    Matrix matrix2 = new Matrix(3, 2, elements2);
+  public void shouldEquateTwoMatricesThatAreNotEqualInDimensions() {
+    Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
+    Matrix matrix2 = matrix_3x2(3, 2, 3, 4, 4, 5);
     assertFalse(matrix1.equals(matrix2));
   }
 
   @Test
-  public void equatesMatricesWithOther() {
-    int[][] elements1 = { { 1, 2 }, { 3, 4 } };
-    Matrix matrix1 = new Matrix(2, 2, elements1);
-    int[][] elements2 = { { 1, 2 }, { 3, 4 } };
-    assertFalse(matrix1.equals(elements2));
+  public void shouldEquateMatricesWithOther() {
+    Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
+    int[][] array = { { 1, 2 }, { 3, 4 } };
+    assertFalse(matrix1.equals(array));
   }
 
   @Test
-  public void addsTwoMatrices() {
-    int[][] elements1 = { { 1, 2 }, { 3, 4 } };
-    Matrix matrix1 = new Matrix(2, 2, elements1);
-    int[][] elements2 = { { 2, 1 }, { 4, 3 } };
-    Matrix matrix2 = new Matrix(2, 2, elements2);
-    int[][] elements3 = { { 3, 3 }, { 7, 7 } };
-    Matrix resultantMatrix = new Matrix(2, 2, elements3);
+  public void shouldAddTwoMatrices() {
+    Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
+    Matrix matrix2 = matrix_2x2(2, 1, 4, 3);
+    Matrix resultantMatrix = matrix_2x2(3, 3, 7, 7);
     assertEquals(resultantMatrix, matrix1.add(matrix2));
   }
 
   @Test
-  public void doesNotAddMatricesOfDifferentDimensions() {
-    int[][] elements1 = { { 1, 2 }, { 3, 4 } };
-    Matrix matrix1 = new Matrix(2, 2, elements1);
-    int[][] elements2 = { { 2, 1 }, { 4, 3 }, { 5, 6 } };
-    Matrix matrix2 = new Matrix(3, 2, elements2);
+  public void shouldNotAddMatricesOfDifferentDimensions() {
+    Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
+    Matrix matrix2 = matrix_3x2(2, 1, 4, 3, 5, 6);
     assertNull(matrix1.add(matrix2));
   }
 
   @Test
-  public void subtractsTwoMatrices() {
-    int[][] elements1 = { { 2, 5 }, { 4, 3 } };
-    Matrix matrix1 = new Matrix(2, 2, elements1);
-    int[][] elements2 = { { 1, 2 }, { 3, 4 } };
-    Matrix matrix2 = new Matrix(2, 2, elements2);
-    int[][] elements3 = { { 1, 3 }, { 1, -1 } };
-    Matrix resultantMatrix = new Matrix(2, 2, elements3);
+  public void shouldSubtractTwoMatrices() {
+    Matrix matrix1 = matrix_2x2(2, 5, 4, 3);
+    Matrix matrix2 = matrix_2x2(1, 2, 3, 4);
+    Matrix resultantMatrix = matrix_2x2(1, 3, 1, -1);
     assertEquals(resultantMatrix, matrix1.subtract(matrix2));
   }
 
   @Test
-  public void doesNotSubtractMatricesOfDifferentDimensions() {
-    int[][] elements1 = { { 1, 2 }, { 3, 4 } };
-    Matrix matrix1 = new Matrix(2, 2, elements1);
-    int[][] elements2 = { { 2, 1 }, { 4, 3 }, { 5, 6 } };
-    Matrix matrix2 = new Matrix(3, 2, elements2);
+  public void shouldNotSubtractMatricesOfDifferentDimensions() {
+    Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
+    Matrix matrix2 = matrix_3x2(2, 1, 4, 3, 5, 6);
     assertNull(matrix1.subtract(matrix2));
   }
 
   @Test
-  public void multipliesTwoMatrices() {
-    int[][] elements1 = { { 2, 5 }, { 4, 3 } };
-    Matrix matrix1 = new Matrix(2, 2, elements1);
-    int[][] elements2 = { { 1, 2 }, { 3, 4 } };
-    Matrix matrix2 = new Matrix(2, 2, elements2);
-    int[][] elements3 = { { 17, 24 }, { 13, 20 } };
-    Matrix resultantMatrix = new Matrix(2, 2, elements3);
+  public void shouldMultiplyTwoMatrices() {
+    Matrix matrix1 = matrix_2x2(2, 5, 4, 3);
+    Matrix matrix2 = matrix_2x2(1, 2, 3, 4);
+    Matrix resultantMatrix = matrix_2x2(17, 24, 13, 20);
     assertEquals(resultantMatrix, matrix1.multiply(matrix2));
   }
 
   @Test
-  public void multipliesTwoMatricesWithDifferentDimension() {
+  public void shouldMultiplyTwoMatricesWithDifferentDimension() {
     int[][] elements1 = { { 1, 2, 3 }, { 4, 5, 6 } };
     Matrix matrix1 = new Matrix(2, 3, elements1);
-    int[][] elements2 = { { 7, 8 }, { 9, 10 }, { 11, 12 } };
-    Matrix matrix2 = new Matrix(3, 2, elements2);
-    int[][] elements3 = { { 58, 64 }, { 139, 154 } };
-    Matrix resultantMatrix = new Matrix(2, 2, elements3);
+    Matrix matrix2 = matrix_3x2(7, 8, 9, 10, 11, 12);
+    Matrix resultantMatrix = matrix_2x2(58, 64, 139, 154);
     assertEquals(resultantMatrix, matrix1.multiply(matrix2));
   }
 
   @Test
-  public void doesNotMultiplyMatricesWithWrongDimension() {
-    int[][] elements1 = { { 1, 2 }, { 3, 4 } };
-    Matrix matrix1 = new Matrix(2, 2, elements1);
+  public void shouldNotMultiplyMatricesWithWrongDimension() {
+    Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
     int[][] elements2 = { { 2, 1 }, { 4, 3 }, { 5, 6 } };
     Matrix matrix2 = new Matrix(3, 2, elements2);
     assertNull(matrix1.multiply(matrix2));
+  }
+
+  private Matrix matrix_2x2(int a, int b, int c, int d) {
+    return new Matrix(2, 2, new int[][] { { a, b }, { c, d } });
+  }
+
+  private Matrix matrix_3x2(int a, int b, int c, int d, int e, int f) {
+    return new Matrix(3, 2, new int[][] { { a, b }, { c, d }, { e, f } });
   }
 }
