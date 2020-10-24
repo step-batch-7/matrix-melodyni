@@ -20,28 +20,28 @@ public class MatrixTest {
   }
 
   @Test
-  public void shouldEquateTwoMatricesThatAreNotEqual() {
+  public void shouldNotEquateTwoMatricesThatAreNotEqual() {
     Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
     Matrix matrix2 = matrix_2x2(3, 2, 3, 4);
     assertFalse(matrix1.equals(matrix2));
   }
 
   @Test
-  public void shouldEquateTwoMatricesThatAreNotEqualInDimensions() {
+  public void shouldNotEquateTwoMatricesOfDifferentDimensions() {
     Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
     Matrix matrix2 = matrix_3x2(3, 2, 3, 4, 4, 5);
     assertFalse(matrix1.equals(matrix2));
   }
 
   @Test
-  public void shouldEquateMatricesWithOther() {
+  public void shouldNotEquateMatrixWithOtherInstance() {
     Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
     int[][] array = { { 1, 2 }, { 3, 4 } };
     assertFalse(matrix1.equals(array));
   }
 
   @Test
-  public void shouldAddTwoMatrices() {
+  public void shouldAddTwoMatricesOfSameDimensions() {
     Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
     Matrix matrix2 = matrix_2x2(2, 1, 4, 3);
     Matrix resultantMatrix = matrix_2x2(3, 3, 7, 7);
@@ -52,11 +52,11 @@ public class MatrixTest {
   public void shouldNotAddMatricesOfDifferentDimensions() {
     Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
     Matrix matrix2 = matrix_3x2(2, 1, 4, 3, 5, 6);
-    assertNull(matrix1.add(matrix2));
+    assertEquals(null, matrix1.add(matrix2));
   }
 
   @Test
-  public void shouldSubtractTwoMatrices() {
+  public void shouldSubtractTwoMatricesOfSameDimensions() {
     Matrix matrix1 = matrix_2x2(2, 5, 4, 3);
     Matrix matrix2 = matrix_2x2(1, 2, 3, 4);
     Matrix resultantMatrix = matrix_2x2(1, 3, 1, -1);
@@ -67,11 +67,11 @@ public class MatrixTest {
   public void shouldNotSubtractMatricesOfDifferentDimensions() {
     Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
     Matrix matrix2 = matrix_3x2(2, 1, 4, 3, 5, 6);
-    assertNull(matrix1.subtract(matrix2));
+    assertEquals(null, matrix1.subtract(matrix2));
   }
 
   @Test
-  public void shouldMultiplyTwoMatrices() {
+  public void shouldMultiplyTwoMatricesOfSameDimensions() {
     Matrix matrix1 = matrix_2x2(2, 5, 4, 3);
     Matrix matrix2 = matrix_2x2(1, 2, 3, 4);
     Matrix resultantMatrix = matrix_2x2(17, 24, 13, 20);
@@ -79,7 +79,7 @@ public class MatrixTest {
   }
 
   @Test
-  public void shouldMultiplyTwoMatricesWithDifferentDimension() {
+  public void shouldMultiplyTwoMatricesOfDifferentDimensions() {
     int[][] elements1 = { { 1, 2, 3 }, { 4, 5, 6 } };
     Matrix matrix1 = new Matrix(2, 3, elements1);
     Matrix matrix2 = matrix_3x2(7, 8, 9, 10, 11, 12);
@@ -88,11 +88,11 @@ public class MatrixTest {
   }
 
   @Test
-  public void shouldNotMultiplyMatricesWithWrongDimension() {
+  public void shouldNotMultiplyMatricesOfWrongDimensions() {
     Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
     int[][] elements2 = { { 2, 1 }, { 4, 3 }, { 5, 6 } };
     Matrix matrix2 = new Matrix(3, 2, elements2);
-    assertNull(matrix1.multiply(matrix2));
+    assertEquals(null, matrix1.multiply(matrix2));
   }
 
   private Matrix matrix_2x2(int a, int b, int c, int d) {
