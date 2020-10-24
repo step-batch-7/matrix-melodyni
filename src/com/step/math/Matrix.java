@@ -17,7 +17,7 @@ public class Matrix {
   }
 
   public Matrix add(Matrix matrix) {
-    if (matrix.row != this.row || matrix.col != this.col) {
+    if (!this.areDimensionsEqual(matrix)) {
       return null;
     }
     int[][] result = new int[this.row][this.col];
@@ -30,7 +30,7 @@ public class Matrix {
   }
 
   public Matrix subtract(Matrix matrix) {
-    if (matrix.row != this.row || matrix.col != this.col) {
+    if (!this.areDimensionsEqual(matrix)) {
       return null;
     }
     int[][] result = new int[this.row][this.col];
@@ -55,6 +55,10 @@ public class Matrix {
       }
     }
     return new Matrix(this.row, matrix.col, result);
+  }
+
+  private boolean areDimensionsEqual(Matrix matrix) {
+    return matrix.row == this.row && matrix.col == this.col;
   }
 
   private boolean isDeepEqual(Matrix matrix) {
