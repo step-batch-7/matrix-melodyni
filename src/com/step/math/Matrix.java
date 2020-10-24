@@ -5,6 +5,12 @@ public class Matrix {
   private int col;
   private int[][] data;
 
+  // public Matrix(int row, int col) {
+  //   this.row = row;
+  //   this.col = col;
+  //   this.data = new int[row][col];
+  // }
+
   public Matrix(int row, int col, int[][] data) {
     this.row = row;
     this.col = col;
@@ -46,7 +52,7 @@ public class Matrix {
     if (this.col != matrix.row) {
       return null;
     }
-    int[][] result = new int[this.row][this.col];
+    int[][] result = new int[this.row][matrix.col];
     for (int i = 0; i < this.row; i++) {
       for (int j = 0; j < matrix.col; j++) {
         for (int k = 0; k < matrix.row; k++) {
@@ -54,7 +60,7 @@ public class Matrix {
         }
       }
     }
-    return new Matrix(this.row, this.col, result);
+    return new Matrix(this.row, matrix.col, result);
   }
 
   private boolean isDeepEqual(Matrix matrix) {
