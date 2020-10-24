@@ -16,28 +16,28 @@ public class MatrixTest {
   public void shouldEquateTwoMatricesThatAreEqual() {
     Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
     Matrix matrix2 = matrix_2x2(1, 2, 3, 4);
-    assertTrue(matrix1.equals(matrix2));
+    assertEquals(matrix1, matrix2);
   }
 
   @Test
   public void shouldNotEquateTwoMatricesThatAreNotEqual() {
     Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
-    Matrix matrix2 = matrix_2x2(3, 2, 3, 4);
-    assertFalse(matrix1.equals(matrix2));
+    Matrix matrix2 = matrix_2x2(3, 7, 9, 4);
+    assertNotEquals(matrix1, matrix2);
   }
 
   @Test
   public void shouldNotEquateTwoMatricesOfDifferentDimensions() {
     Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
     Matrix matrix2 = matrix_3x2(3, 2, 3, 4, 4, 5);
-    assertFalse(matrix1.equals(matrix2));
+    assertNotEquals(matrix1, matrix2);
   }
 
   @Test
   public void shouldNotEquateMatrixWithOtherInstance() {
     Matrix matrix1 = matrix_2x2(1, 2, 3, 4);
     int[][] array = { { 1, 2 }, { 3, 4 } };
-    assertFalse(matrix1.equals(array));
+    assertNotEquals(matrix1, array);
   }
 
   @Test
